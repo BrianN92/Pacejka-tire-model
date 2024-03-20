@@ -18,17 +18,10 @@ import time
 
 
 class MagicFormula:
-	def __init__(self, mode):
-		script_dir = os.path.dirname(os.path.abspath(__file__))
-		data_path  = os.path.join(script_dir, 'tire_data', 'yamls/')
+	def __init__(self, , filename, data_path, mode):
 		self.param_tires = {}
-		self.param_tires['RF']    = self.load_params('RF', data_path)
-		self.param_tires['RR']    = self.load_params('RR', data_path)
-		self.param_tires['LF']    = self.load_params('LF', data_path)
-		self.param_tires['LR']    = self.load_params('LR', data_path)
-		self.param_tires['front'] = self.load_params('FRONT_TIRES_WEIGHTED', data_path) 
-		self.param_tires['rear'] = self.load_params('REAR_TIRES_WEIGHTED', data_path) 
-		self.params = {}
+		for ele in filename:
+			self.param_tires[ele] = self.load_params(ele, data_path)
 		self.mode      = mode
 		tenth          = self.tenth_digit()
 		hundredth	   = self.hundredth_digit()
@@ -68,9 +61,9 @@ class MagicFormula:
 		digit = int(number // 100) % 10
 		return digit
 
-	def load_params(self, tire_select, data_path):
+	def load_params(self, filename, data_path):
 		data_ls = [data for data in os.listdir(data_path)]
-		idx_ls  = [idx for idx, ltr in enumerate(data_ls) if tire_select in ltr]
+		idx_ls  = [idx for idx, ltr in enumerate(data_ls) if filename in ltr]
 		name    = data_ls[idx_ls[0]]
 		with open(data_path + name, 'r') as stream:
 			try:

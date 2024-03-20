@@ -40,7 +40,7 @@ usemode = 111
 if args.model == 'lateral':
     model = MF_lateral([tire_F, tire_R], data_path)
 elif args.model == 'MF':
-    model = MagicFormula(usemode)
+    model = MagicFormula([tire_F, tire_R], data_path, usemode)
 Fyf    = np.zeros(nPoints)
 Fyf0   = np.zeros(nPoints)
 Fyr    = np.zeros(nPoints)
