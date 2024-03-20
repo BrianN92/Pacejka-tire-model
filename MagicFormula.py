@@ -18,7 +18,7 @@ import time
 
 
 class MagicFormula:
-	def __init__(self, , filename, data_path, mode):
+	def __init__(self, filename, data_path, mode):
 		self.param_tires = {}
 		for ele in filename:
 			self.param_tires[ele] = self.load_params(ele, data_path)
