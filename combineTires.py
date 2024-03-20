@@ -35,20 +35,5 @@ def saveToYaml(params, path, name):
     with open(path + name + '.yaml', 'w') as outfile:
         yaml.dump(params, outfile)
     outfile.close()
-
-if __name__ == '__main__':
-    SAVETIRE  = False
-    data_path = os.path.expanduser("~/Tire model/Pacejka_MF/tire_data/yamls")
-    tire_lf   = load_params('LF', data_path)
-    tire_lr   = load_params('LR', data_path)
-    tire_rf   = load_params('RF', data_path)
-    tire_rr   = load_params('RR', data_path)
-    tire_frt  = combineTires(tire_lf, tire_rf)
-    tire_rear = combineTires(tire_lr, tire_rr)
-    name_frt  = "2021021_Firestone_IAC_FRONT_TIRES_WEIGHTED"
-    name_rear = "2021021_Firestone_IAC_REAR_TIRES_WEIGHTED"
-    if SAVETIRE:
-        saveToYaml(tire_rear, data_path, name_rear)
-        saveToYaml(tire_frt, data_path, name_frt)
     
 
