@@ -50,9 +50,16 @@ To convert `.TIR` tire files into YAML format and compute various tire dynamics,
      python test_lateral.py -m MF
      ```
 
-### Prerequisites
+## References
 
-Ensure that you have Python installed on your system as all scripts are written in Python.
+This project draws upon the foundational works in tire and vehicle dynamics. For further reading and a deeper understanding of the concepts implemented, the following texts are highly recommended:
+
+1. **Tire and Vehicle Dynamics** by Hans Pacejka (2005, Elsevier). This book provides an in-depth exploration of tire behavior and its impact on vehicle dynamics, offering insights into the models and theories that are central to the field.
+
+2. **Vehicle Dynamics and Control** by Rajesh Rajamani (2011, Springer Science & Business Media). Rajamani's work delves into the principles of vehicle dynamics, control systems, and their applications in real-world scenarios, making it a valuable resource for anyone interested in the control aspect of vehicle dynamics.
+
+These references serve as essential resources for understanding the complex interactions between tires and vehicle dynamics, and they underpin much of the theoretical framework utilized in this project.
+
 
 ## Contribution
 
