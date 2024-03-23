@@ -46,15 +46,13 @@ Fyf0   = np.zeros(nPoints)
 Fyr    = np.zeros(nPoints)
 Fyr0   = np.zeros(nPoints)
 for idx in range(nPoints):
-    # start = time.time()
     model.online_params(Fz[idx], P[idx], gamma[idx], kappa[idx], alpha[idx], Vx[idx], tire_F)
     Fyf0[idx], params = model.calculateFy0()
     Fyf[idx], Gy      = model.calculateFy()
     model.online_params(Fz[idx], P[idx], gamma[idx], kappa[idx], alpha[idx], Vx[idx], tire_R)
     Fyr0[idx], params = model.calculateFy0()
     Fyr[idx], Gy      = model.calculateFy()
-    # end = time.time()
-    # print(end-start)
+    
 # Visualizing results
 plt.figure()
 plt.plot(Fyf0, label='Pure lateral force, [front]')

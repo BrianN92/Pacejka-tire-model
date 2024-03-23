@@ -2,8 +2,28 @@ import numpy as np
 import time 
 import matplotlib.pyplot as plt
 import yaml
+import argparse
 import os
 from pathlib import Path
+
+parser = argparse.ArgumentParser(description='Process TIR files.')
+
+# Add the arguments
+parser.add_argument('-f', '--filename', type=str, help='The name of the TIR file to process')
+parser.add_argument('-d', '--data_path', type=str, default='tire_data/TIR_files/', help='Directory path where TIR files are stored')
+parser.add_argument('-s', '--save_path', type=str, default='tire_data/yamls/', help='Directory path where YAML files will be saved')
+
+# Parse the arguments
+args = parser.parse_args()
+
+# Assuming the script_dir is the current working directory
+script_dir = os.getcwd()
+
+# Construct full file paths
+data_path = os.path.join(script_dir, args.data_path)
+print(f"Reading {args.filename+'.tir'} file from: {data_path} ...")
+save_path = os.path.join(script_dir, args.save_path)
+TIR_file = os.path.join(data_path, args.filename+'.tir')
 
 def read_tir(file_path):
     # Initialize the tirParams dictionary with all parameters set in the MATLAB code
@@ -318,17 +338,13 @@ def read_tir(file_path):
     return tir_params
 
 def dump_yaml(tir_params, path, name):
+    print(f"Saving {name+'.yaml'} file to: {path} ...")
     with open(path + name + '.yaml', 'w') as outfile:
         yaml.dump(tir_params, outfile)
     outfile.close()
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-data_path  = os.path.join(script_dir, 'tire_data', 'TIR_files/')
-save_path  = os.path.join(script_dir, 'tire_data', 'yamls/')
-filename   = 'example.tir'
-TIR_file   = data_path + filename
 
 # Read file and then save to yamls
 tir_params = read_tir(TIR_file)
-dump_yaml(tir_params, save_path, filename)
+dump_yaml(tir_params, save_path, args.filename)
 

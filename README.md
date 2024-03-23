@@ -20,10 +20,35 @@ The repository includes the following key components:
 To convert `.TIR` tire files into YAML format and compute various tire dynamics, follow these steps:
 
 1. Place your `.TIR` tire files into the `tire_data/TIR_files/` directory.
-2. Run `readTIR.py` to convert the `.TIR` files into YAML format parameters, which will be saved in the `tire_data/yamls/` directory.
+2. Run `readTIR.py` from the command line, specifying the filename of the `.TIR` file you want to convert, along with optional arguments for the data and save paths if you're not using the default directories. For example:
+
+   ```bash
+   python readTIR.py -f example
+   ```
+   
+   If your `.TIR` files are located in a different directory or you wish to save the YAML files to a different location, you can specify these paths with the `--data_path` and `--save_path` arguments, respectively:
+
+   ```bash
+   python readTIR.py example.tir --data_path '/path/to/TIR_files/' --save_path '/path/to/yamls/'
+   ```
+
+   Replace `/path/to/TIR_files/` and `/path/to/yamls/` with the actual paths where your `.TIR` files are stored and where you want to save the YAML files, respectively.
+
 3. Use `MagicFormula.py` to calculate the complete tire model dynamics, or `MF_lateral.py` for only lateral dynamics.
+
 4. The `normalForce.py` script can be used to determine the normal force on a given tire.
-5. To test and understand the implementation, run the `test_lateral.py` script.
+
+5. To test and understand the implementation, run the `test_lateral.py` script, specifying the model you wish to test. You can select between the complete tire model and the lateral tire model using the `-m` argument:
+
+   - For the lateral tire model, use:
+     ```bash
+     python test_lateral.py -m lateral
+     ```
+   
+   - For the complete tire model, use:
+     ```bash
+     python test_lateral.py -m MF
+     ```
 
 ### Prerequisites
 
